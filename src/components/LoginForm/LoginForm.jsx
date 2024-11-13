@@ -1,16 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { Form, Formik, Field, ErrorMessage } from 'formik';
 
-import { ContactFormSchema } from '../../utils/schemas';
-import { addContact } from '../../redux/contacts/operations';
+import { LoginFormSchema } from '../../utils/schemas';
+import { loginUser } from '../../redux/auth/operations';
 
-import css from './ContactForm.module.css';
+import css from '../LoginForm/LoginForm.module.css';
 
-const ContactForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values));
+    dispatch(loginUser(values));
     actions.resetForm();
   };
 
@@ -18,33 +18,33 @@ const ContactForm = () => {
     <div>
       <Formik
         initialValues={{
-          name: '',
-          number: '',
+          email: '',
+          password: '',
         }}
-        validationSchema={ContactFormSchema}
+        validationSchema={LoginFormSchema}
         onSubmit={handleSubmit}
       >
         <Form className={css.form}>
           <label className={css.label}>
-            <span>Name</span>
-            <Field type="text" name="name" />
+            <span>E-mail</span>
+            <Field type="text" name="email" />
             <ErrorMessage
               className={css.message}
-              name="name"
+              name="email"
               component="span"
             />
           </label>
           <label className={css.label}>
-            <span>Number</span>
-            <Field type="text" name="number" />
+            <span>Password</span>
+            <Field type="password" name="password" />
             <ErrorMessage
               className={css.message}
-              name="number"
+              name="password"
               component="span"
             />
           </label>
           <button className={css.btnSubmit} type="submit">
-            Add contact
+            Sign Ip
           </button>
         </Form>
       </Formik>
@@ -52,4 +52,4 @@ const ContactForm = () => {
   );
 };
 
-export default ContactForm;
+export default LoginForm;
