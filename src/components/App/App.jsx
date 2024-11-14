@@ -1,8 +1,13 @@
+import toast, { Toaster } from 'react-hot-toast';
 import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectIsRefreshing } from '../../redux/auth/selectors';
+import {
+  selectIsRefreshing,
+  selectError,
+  selectIsLoggedIn,
+} from '../../redux/auth/selectors';
 import { refreshUser } from '../../redux/auth/operations';
 
 import Layout from '../Layout/Layout';
@@ -29,6 +34,21 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  const error = useSelector(selectError);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      toast.success('Successful user identification!');
+    }
+  }, [isLoggedIn]);
+
   return isRefreshing ? (
     <p>Refreshing user...</p>
   ) : (
@@ -53,6 +73,7 @@ const App = () => {
           </Routes>
         </Suspense>
       </Layout>
+      <Toaster position="top-center" reverseOrder={false} />
     </>
   );
 };

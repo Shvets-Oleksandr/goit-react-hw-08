@@ -22,6 +22,11 @@ export const registerUser = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return thunkAPI.rejectWithValue(
+          'The user with this E-mail is already registered!'
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -35,6 +40,9 @@ export const loginUser = createAsyncThunk(
       setToken(data.token);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return thunkAPI.rejectWithValue('Incorrect user email or password!');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -60,7 +68,9 @@ export const refreshUser = createAsyncThunk(
     const token = state.auth.token;
 
     if (token === null) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
+      return thunkAPI.rejectWithValue(
+        'Failed to get user, please login or register user'
+      );
     }
     try {
       setToken(token);

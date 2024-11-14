@@ -19,7 +19,7 @@ const ContactsPage = () => {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h2>Phonebook</h2>
       <ContactForm />
       <SearchBox />
       {isLoading && <p>Request in progress...</p>}
