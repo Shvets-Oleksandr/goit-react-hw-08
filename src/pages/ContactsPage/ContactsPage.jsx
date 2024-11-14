@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAllContacts } from '../../redux/contacts/operations';
 import { selectError, selectIsLoading } from '../../redux/contacts/selectors';
 
-import ContactForm from '../../components/ContactForm/ContactForm';
-import SearchBox from '../../components/searchBox/SearchBox';
-import ContactList from '../../components/contactList/ContactList';
+import ContactForm from '../../components/ContactFormcom/ContactForm';
+import SearchBox from '../../components/SearchBoxcom/SearchBox';
+import ContactList from '../../components/ContactListcom/ContactList';
 
 const ContactsPage = () => {
   const dispatch = useDispatch();

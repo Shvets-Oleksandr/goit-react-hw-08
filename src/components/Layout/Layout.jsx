@@ -1,4 +1,4 @@
-import AppBar from '../AppBar/AppBar';
+import AppBar from '../AppBarcom/AppBar';
 
 const Layout = ({ children }) => {
   return (
