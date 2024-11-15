@@ -44,7 +44,7 @@ const LoginForm = () => {
             />
           </label>
           <button className={css.btnSubmit} type="submit">
-            Sign Ip
+            Sign In
           </button>
         </Form>
       </Formik>
