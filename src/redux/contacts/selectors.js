@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 import { selectValueFilter } from '../filters/selectors';
 
-const selectContacts = state => state.contacts.items;
+export const selectContacts = state => state.contacts.items;
 export const selectFilteredContacts = createSelector(
   [selectContacts, selectValueFilter],
   (contacts, valueFilter) => {
@@ -16,5 +16,8 @@ export const selectFilteredContacts = createSelector(
   }
 );
 
+export const selectToastDeleteContact = state =>
+  state.contacts.toastDeleteContact;
+export const selectToastAddContact = state => state.contacts.toastAddContact;
 export const selectIsLoading = state => state.contacts.loading;
 export const selectError = state => state.contacts.error;

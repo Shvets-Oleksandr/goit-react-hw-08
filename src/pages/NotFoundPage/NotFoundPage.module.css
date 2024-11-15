@@ -1,0 +1,20 @@
+.goHomeBtn {
+  margin-top: 10px;
+  padding: 4px;
+  height: 30px;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  border-radius: 4px;
+  background-color: #9fb9d0;
+}
+
+.goHomeBtn:hover {
+  color: black;
+  background-color: #2774b8;
+}
+
+.goHomeBtn:focus,
+.goHomeBtn:focus-visible {
+  outline: 2px auto #9fb9d0;
+}

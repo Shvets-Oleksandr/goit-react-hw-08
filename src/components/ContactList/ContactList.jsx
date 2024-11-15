@@ -11,7 +11,7 @@ const ContactList = () => {
   return (
     <>
       {Array.isArray(contacts) && contacts.length === 0 && (
-        <p>There are no contacts in yuor foneboock</p>
+        <p>There are no contacts in yuor Phoneboock</p>
       )}
       <ul className={css.list}>
         {contacts.map(contact => {

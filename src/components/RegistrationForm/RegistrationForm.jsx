@@ -15,7 +15,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div>
+    <>
       <Formik
         initialValues={{
           name: '',
@@ -28,7 +28,7 @@ const RegistrationForm = () => {
         <Form className={css.form}>
           <label className={css.label}>
             <span>User name</span>
-            <Field type="text" name="name" />
+            <Field className={css.input} type="text" name="name" />
             <ErrorMessage
               className={css.message}
               name="name"
@@ -37,7 +37,7 @@ const RegistrationForm = () => {
           </label>
           <label className={css.label}>
             <span>E-mail</span>
-            <Field type="text" name="email" />
+            <Field className={css.input} type="text" name="email" />
             <ErrorMessage
               className={css.message}
               name="email"
@@ -46,7 +46,7 @@ const RegistrationForm = () => {
           </label>
           <label className={css.label}>
             <span>Password</span>
-            <Field type="password" name="password" />
+            <Field className={css.input} type="password" name="password" />
             <ErrorMessage
               className={css.message}
               name="password"
@@ -58,7 +58,7 @@ const RegistrationForm = () => {
           </button>
         </Form>
       </Formik>
-    </div>
+    </>
   );
 };
 

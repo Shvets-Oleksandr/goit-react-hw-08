@@ -1,5 +1,5 @@
 .form {
-  max-width: 320px;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -17,11 +17,23 @@
 }
 
 .btnSubmit {
-  margin: 0 auto;
-  width: max-content;
+  width: 100%;
+  margin-top: 20px;
 }
 
 .message {
-  color: red;
+  color: #e84a5f;
   font-size: small;
+}
+
+.input {
+  padding: 4px 10px;
+  background-color: #c8dae9;
+  border: none;
+  border-radius: 4px;
+}
+
+.input:focus {
+  outline: 3px solid #2774b8;
+  border-radius: 4px;
 }

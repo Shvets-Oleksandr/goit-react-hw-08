@@ -3,6 +3,8 @@ import { Suspense, lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import css from './App.module.css';
+
 import {
   selectIsRefreshing,
   selectError,
@@ -18,10 +20,8 @@ const HomePage = lazy(() => import('../../pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
 );
-const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
-const ContactsPage = lazy(() =>
-  import('../../pages/ContactsPage/ContactsPage')
-);
+const LoginPage = lazy(() => import('../../pages/LoginPage'));
+const ContactsPage = lazy(() => import('../../pages/ContactsPage'));
 const NotFoundPage = lazy(() =>
   import('../../pages/NotFoundPage/NotFoundPage')
 );
@@ -54,24 +54,26 @@ const App = () => {
   ) : (
     <>
       <Layout>
-        <Suspense fallback={<p>Loading page...</p>}>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route
-              path="/register"
-              element={<RestrictedRoute component={<RegistrationPage />} />}
-            />
-            <Route
-              path="/login"
-              element={<RestrictedRoute component={<LoginPage />} />}
-            />
-            <Route
-              path="/contacts"
-              element={<PrivateRoute component={<ContactsPage />} />}
-            />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
+        <div className={css.appContainer}>
+          <Suspense fallback={<p>Loading page...</p>}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route
+                path="/register"
+                element={<RestrictedRoute component={<RegistrationPage />} />}
+              />
+              <Route
+                path="/login"
+                element={<RestrictedRoute component={<LoginPage />} />}
+              />
+              <Route
+                path="/contacts"
+                element={<PrivateRoute component={<ContactsPage />} />}
+              />
+              <Route path="*" element={<NotFoundPage />} />
+            </Routes>
+          </Suspense>
+        </div>
       </Layout>
       <Toaster position="top-center" reverseOrder={false} />
     </>

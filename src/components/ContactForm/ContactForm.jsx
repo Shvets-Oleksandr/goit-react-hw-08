@@ -27,7 +27,7 @@ const ContactForm = () => {
         <Form className={css.form}>
           <label className={css.label}>
             <span>Name</span>
-            <Field type="text" name="name" />
+            <Field className={css.input} type="text" name="name" />
             <ErrorMessage
               className={css.message}
               name="name"
@@ -36,7 +36,7 @@ const ContactForm = () => {
           </label>
           <label className={css.label}>
             <span>Number</span>
-            <Field type="text" name="number" />
+            <Field className={css.input} type="text" name="number" />
             <ErrorMessage
               className={css.message}
               name="number"

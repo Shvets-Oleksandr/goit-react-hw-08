@@ -17,6 +17,7 @@ const SearchBox = () => {
     <div className={css.searchWrapper}>
       <p>Find contact by name or fonenumber</p>
       <input
+        className={css.input}
         type="text"
         value={filter}
         onChange={event => handleFilterChange(event.target.value)}

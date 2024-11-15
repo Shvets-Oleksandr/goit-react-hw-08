@@ -27,7 +27,7 @@ const LoginForm = () => {
         <Form className={css.form}>
           <label className={css.label}>
             <span>E-mail</span>
-            <Field type="text" name="email" />
+            <Field className={css.input} type="text" name="email" />
             <ErrorMessage
               className={css.message}
               name="email"
@@ -36,7 +36,7 @@ const LoginForm = () => {
           </label>
           <label className={css.label}>
             <span>Password</span>
-            <Field type="password" name="password" />
+            <Field className={css.input} type="password" name="password" />
             <ErrorMessage
               className={css.message}
               name="password"

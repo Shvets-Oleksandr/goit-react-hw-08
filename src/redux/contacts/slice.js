@@ -3,11 +3,15 @@ import { getAllContacts, addContact, deleteContact } from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
+  state.toastAddContact = null;
+  state.toastDeleteContact = null;
 };
 
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.toastAddContact = null;
+  state.toastDeleteContact = null;
 };
 
 const contactsSlice = createSlice({
@@ -16,6 +20,8 @@ const contactsSlice = createSlice({
     items: [],
     isLoading: false,
     error: null,
+    toastAddContact: null,
+    toastDeleteContact: null,
   },
 
   extraReducers: builder => {
@@ -33,6 +39,7 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         state.items.push(action.payload);
+        state.toastAddContact = action.payload.name;
       })
       .addCase(addContact.rejected, handleRejected)
 
@@ -44,6 +51,7 @@ const contactsSlice = createSlice({
           contact => contact.id === action.payload.id
         );
         state.items.splice(index, 1);
+        state.toastDeleteContact = action.payload.name;
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
