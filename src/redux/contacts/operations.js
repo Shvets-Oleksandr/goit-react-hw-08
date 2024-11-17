@@ -9,6 +9,11 @@ export const getAllContacts = createAsyncThunk(
       console.log(data);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        return thunkAPI.rejectWithValue(
+          'The user with this e-mail is logged in from another device. Refresh the page and Sign in again on the current device!'
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

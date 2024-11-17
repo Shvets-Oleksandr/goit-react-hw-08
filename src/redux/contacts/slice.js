@@ -19,6 +19,7 @@ const handlePending = state => {
 const handleRejected = (state, action) => {
   state.isLoading = false;
   state.error = action.payload;
+  state.items = [];
   state.toastAddContact = null;
   state.toastDeleteContact = null;
 };

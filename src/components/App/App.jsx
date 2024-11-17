@@ -10,6 +10,7 @@ import {
   selectError,
   selectIsLoggedIn,
 } from '../../redux/auth/selectors';
+
 import { refreshUser } from '../../redux/auth/operations';
 
 import Layout from '../Layout/Layout';

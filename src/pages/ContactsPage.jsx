@@ -25,7 +25,7 @@ const ContactsPage = () => {
 
   useEffect(() => {
     dispatch(getAllContacts());
-  }, [dispatch]);
+  }, [dispatch, error]);
 
   useEffect(() => {
     if (toastDeleteContact) {
@@ -39,14 +39,23 @@ const ContactsPage = () => {
     }
   }, [toastAddContact]);
 
+  useEffect(() => {
+    if (error) {
+      toast.error(error);
+    }
+  }, [error]);
+
   return (
     <div>
       <h2>Phonebook</h2>
       <ContactForm />
       {isContacts && isContacts.length >= 2 && <SearchBox />}
       {isLoading && <p>Request in progress...</p>}
-      {error && <p style={{ color: '#e84a5f' }}>Error: {error}</p>}
-      <ContactList />
+      {error ? (
+        <p style={{ color: '#e84a5f' }}>Error: {error}</p>
+      ) : (
+        <ContactList />
+      )}
       <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
