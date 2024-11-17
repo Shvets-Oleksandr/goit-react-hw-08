@@ -1,5 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getAllContacts, addContact, deleteContact } from './operations';
+import { logoutUser } from '../auth/operations';
+
+const initialState = {
+  items: [],
+  isLoading: false,
+  error: null,
+  toastAddContact: null,
+  toastDeleteContact: null,
+};
 
 const handlePending = state => {
   state.isLoading = true;
@@ -16,13 +25,7 @@ const handleRejected = (state, action) => {
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState: {
-    items: [],
-    isLoading: false,
-    error: null,
-    toastAddContact: null,
-    toastDeleteContact: null,
-  },
+  initialState,
 
   extraReducers: builder => {
     builder
@@ -53,7 +56,11 @@ const contactsSlice = createSlice({
         state.items.splice(index, 1);
         state.toastDeleteContact = action.payload.name;
       })
-      .addCase(deleteContact.rejected, handleRejected);
+      .addCase(deleteContact.rejected, handleRejected)
+
+      .addCase(logoutUser.fulfilled, () => {
+        return initialState;
+      });
   },
 });
 

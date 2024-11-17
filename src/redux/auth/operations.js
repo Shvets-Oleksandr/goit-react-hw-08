@@ -77,6 +77,11 @@ export const refreshUser = createAsyncThunk(
       const { data } = await authInstance.get('/users/current');
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 401) {
+        return thunkAPI.rejectWithValue(
+          'The user with this e-mail is logged in from another device. Sign in again on the current device.!'
+        );
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
